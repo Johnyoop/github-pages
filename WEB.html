@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio ของ Chaichana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // ใช้ฟอนต์ที่รองรับภาษาไทยได้ดี
+                        sans: ['Inter', 'Kanit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* เพิ่มสไตล์เพิ่มเติมเล็กน้อย */
+        html {
+            scroll-behavior: smooth; /* ทำให้การเลื่อนหน้าจอสมูท */
+        }
+        body {
+            font-family: 'Kanit', sans-serif; /* ตั้งค่าฟอนต์หลัก */
+        }
+        /* สไตล์สำหรับ Active Navigation Link */
+        .nav-link-active {
+            font-weight: 500;
+            color: #3b82f6; /* สีน้ำเงิน Tailwind */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-semibold text-gray-700">Boss Chaichana</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-blue-500 nav-link" data-section="home">home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-500 nav-link" data-section="about">เกี่ยวกับฉัน</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-500 nav-link" data-section="skills">ทักษะ</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-500 nav-link" data-section="experience">ประสบการณ์/ผลงาน</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-500 nav-link" data-section="education">การศึกษา/คอร์สเรียน</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-500 nav-link" data-section="contact">ติดต่อ</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2">
+            <a href="#home" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="home">หน้าแรก</a>
+            <a href="#about" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="about">เกี่ยวกับฉัน</a>
+            <a href="#skills" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="skills">ทักษะ</a>
+            <a href="#experience" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="experience">ประสบการณ์/ผลงาน</a>
+            <a href="#education" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="education">การศึกษา/คอร์สเรียน</a>
+            <a href="#contact" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="contact">ติดต่อ</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="home" class="text-center py-20 min-h-[60vh] flex flex-col justify-center items-center">
+             <img src="https://drive.google.com/uc?export=view&id=1mozal81FumDcAostm-uAbWaMJtnZFLlV" alt="รูปโปรไฟล์ของ [ชื่อของคุณ]" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 shadow-lg object-cover" onerror="this.src='https://placehold.co/150x150/e2e8f0/333?text=รูปโปรไฟล์'">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">สวัสดีครับ, ผม [ชื่อของคุณ]</h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8">[ตำแหน่งงาน หรือ คำอธิบายสั้นๆ เกี่ยวกับตัวคุณ เช่น Web Developer, Data Analyst Enthusiast]</p>
+            <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300">ติดต่อฉัน</a>
+        </section>
+
+        <section id="about" class="py-16 bg-white rounded-lg shadow-md mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-8">เกี่ยวกับฉัน</h2>
+                <p class="text-gray-600 text-center max-w-3xl mx-auto leading-relaxed">
+                    [เขียนแนะนำตัวเองที่นี่ บอกเล่าเรื่องราว ประสบการณ์ ความสนใจ หรือเป้าหมายในสายอาชีพ
+                    เน้นสิ่งที่เกี่ยวข้องกับตำแหน่งงานที่สนใจ หรือสิ่งที่อยากให้ HR ทราบ
+                    ตัวอย่าง: ผมเป็นนักพัฒนาเว็บที่มีความกระตือรือร้นในการเรียนรู้เทคโนโลยีใหม่ๆ และมุ่งมั่นที่จะสร้างสรรค์เว็บไซต์ที่มีประสิทธิภาพและใช้งานง่าย
+                    ผมมีประสบการณ์ในการทำงานกับ... และมีความเชี่ยวชาญในด้าน...]
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">ทักษะความสามารถ</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/code.svg" alt="Coding Icon" class="w-12 h-12 mx-auto mb-4 text-blue-500" onerror="this.style.display='none'">
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">HTML & CSS</h3>
+                        <p class="text-gray-500 text-sm">[ระดับความเชี่ยวชาญ เช่น ชำนาญ, มีประสบการณ์]</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/database.svg" alt="Database Icon" class="w-12 h-12 mx-auto mb-4 text-green-500" onerror="this.style.display='none'">
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">JavaScript</h3>
+                         <p class="text-gray-500 text-sm">[ระดับความเชี่ยวชาญ]</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/server.svg" alt="Server Icon" class="w-12 h-12 mx-auto mb-4 text-purple-500" onerror="this.style.display='none'">
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">[ทักษะอื่นๆ 1]</h3>
+                         <p class="text-gray-500 text-sm">[ระดับความเชี่ยวชาญ]</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/pen-tool.svg" alt="Design Icon" class="w-12 h-12 mx-auto mb-4 text-red-500" onerror="this.style.display='none'">
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">[ทักษะอื่นๆ 2]</h3>
+                         <p class="text-gray-500 text-sm">[ระดับความเชี่ยวชาญ]</p>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-16 bg-white rounded-lg shadow-md mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">ประสบการณ์ / ผลงาน</h2>
+                <div class="space-y-8">
+                    <div class="md:flex items-start gap-6 p-6 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                         <img src="https://placehold.co/200x150/e0f2fe/333?text=Project+1" alt="ภาพตัวอย่างผลงาน 1" class="w-full md:w-48 h-auto rounded-md mb-4 md:mb-0 object-cover flex-shrink-0" onerror="this.src='https://placehold.co/200x150/e0f2fe/333?text=Project+1'">
+                        <div>
+                            <h3 class="text-xl font-medium text-gray-700 mb-2">[ชื่อโปรเจกต์ หรือ ตำแหน่งงาน]</h3>
+                            <p class="text-sm text-gray-500 mb-3">[ช่วงเวลา เช่น ม.ค. 2023 - ปัจจุบัน หรือ ชื่อบริษัท]</p>
+                            <p class="text-gray-600 mb-3">
+                                [อธิบายรายละเอียดเกี่ยวกับโปรเจกต์ หรือหน้าที่ความรับผิดชอบในตำแหน่งงานนั้นๆ
+                                เน้นผลลัพธ์หรือสิ่งที่ได้เรียนรู้ เทคโนโลยีที่ใช้]
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                                </div>
+                             </div>
+                    </div>
+
+                    <div class="md:flex items-start gap-6 p-6 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                         <img src="https://placehold.co/200x150/dcfce7/333?text=Project+2" alt="ภาพตัวอย่างผลงาน 2" class="w-full md:w-48 h-auto rounded-md mb-4 md:mb-0 object-cover flex-shrink-0" onerror="this.src='https://placehold.co/200x150/dcfce7/333?text=Project+2'">
+                        <div>
+                            <h3 class="text-xl font-medium text-gray-700 mb-2">[ชื่อโปรเจกต์ หรือ ตำแหน่งงาน]</h3>
+                            <p class="text-sm text-gray-500 mb-3">[ช่วงเวลา หรือ ชื่อบริษัท]</p>
+                            <p class="text-gray-600 mb-3">
+                                [อธิบายรายละเอียด...]
+                            </p>
+                            <div class="flex space-x-2">
+                                <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">[Tech 1]</span>
+                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">[Tech 2]</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16 mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">การศึกษา / คอร์สเรียน</h2>
+                 <div class="space-y-6 max-w-3xl mx-auto">
+                     <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                         <h3 class="text-lg font-medium text-gray-700">[ชื่อวุฒิการศึกษา หรือ ชื่อคอร์สเรียน]</h3>
+                         <p class="text-gray-500 text-sm mb-1">[ชื่อสถาบัน หรือ ผู้จัดคอร์ส] - [ปีที่จบ หรือ ปีที่เรียน]</p>
+                         <p class="text-gray-600 text-sm">[รายละเอียดเพิ่มเติมเกี่ยวกับสาขาที่เรียน หรือ สิ่งที่ได้เรียนรู้จากคอร์ส (ถ้ามี)]</p>
+                     </div>
+                     <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                         <h3 class="text-lg font-medium text-gray-700">[ชื่อคอร์สเรียนออนไลน์]</h3>
+                         <p class="text-gray-500 text-sm mb-1">[แพลตฟอร์ม เช่น Coursera, Udemy, SkillLane] - [ปีที่เรียน]</p>
+                         </div>
+                     </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md scroll-mt-16">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-6">ติดต่อฉัน</h2>
+                <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+                    สนใจร่วมงาน หรือมีคำถามเพิ่มเติม สามารถติดต่อได้ทางช่องทางด้านล่างนี้ครับ
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="flex items-center text-gray-700">
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" alt="Email Icon" class="w-5 h-5 mr-2 text-blue-500" onerror="this.style.display='none'">
+                        <a href="mailto:[อีเมลของคุณ]" class="hover:text-blue-600">[อีเมลของคุณ]</a>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/phone.svg" alt="Phone Icon" class="w-5 h-5 mr-2 text-green-500" onerror="this.style.display='none'">
+                        <span>[เบอร์โทรศัพท์ของคุณ (ถ้าต้องการ)]</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 mr-2 text-indigo-500" onerror="this.style.display='none'">
+                        <a href="[ลิงก์ LinkedIn ของคุณ]" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600">LinkedIn</a>
+                    </div>
+                     </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-6 mt-12">
+        <div class="container mx-auto px-6 text-center text-sm">
+            &copy; <span id="current-year"></span> [ชื่อของคุณ]. สงวนลิขสิทธิ์.
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // ปิดเมนูเมื่อคลิกลิงก์ (สำหรับ Mobile)
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --- อัปเดตปีปัจจุบันใน Footer ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- Active Navigation Link on Scroll ---
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const options = {
+            rootMargin: "-50% 0px -50% 0px", // กำหนดจุดกึ่งกลางหน้าจอเป็นจุดสังเกต
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    // ลบคลาส active ออกจากทุกลิงก์
+                    navLinks.forEach(link => {
+                        link.classList.remove('nav-link-active');
+                        // ตรวจสอบว่า data-section ตรงกับ id หรือไม่
+                        if (link.getAttribute('data-section') === id) {
+                            link.classList.add('nav-link-active');
+                        }
+                    });
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+    </script>
+
+</body>
+</html>
