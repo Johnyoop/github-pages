@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Chaichna Luangsanam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CSS Configuration (Optional: customize theme)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Use fonts that support Thai well
+                        sans: ['Inter', 'Kanit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add some additional custom styles */
+        html {
+            scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
+        }
+        body {
+            font-family: 'Kanit', sans-serif; /* Set the main font to Kanit */
+        }
+        /* Style for Active Navigation Link */
+        .nav-link-active {
+            font-weight: 500; /* Medium weight */
+            color: #3b82f6; /* Tailwind blue-500 color */
+        }
+        /* Style to center the icon within its container if needed */
+        .project-icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fce7f3; /* Light pink background as fallback */
+            border-radius: 0.375rem; /* rounded-md */
+            width: 100%; /* Use container width */
+            height: 100%; /* Use container height */
+            min-height: 150px; /* Ensure a minimum height */
+        }
+        .project-icon-container img {
+            width: 4rem; /* Adjust icon size as needed (w-16) */
+            height: 4rem; /* Adjust icon size as needed (h-16) */
+            color: #db2777; /* Pink color for the icon */
+        }
+        /* Style for certificate images */
+        .certificate-image {
+            width: 8rem; /* w-32 */
+            height: auto; /* Maintain aspect ratio */
+            flex-shrink: 0; /* Prevent shrinking in flex container */
+            border-radius: 0.375rem; /* rounded-md */
+            object-fit: contain; /* Show the whole certificate without cropping */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+            cursor: pointer; /* Add pointer cursor to indicate clickability */
+            transition: opacity 0.2s ease-in-out; /* Add hover effect */
+        }
+        .certificate-image:hover {
+            opacity: 0.8; /* Slightly transparent on hover */
+        }
+        @media (min-width: 768px) { /* Apply styles from medium breakpoint and up */
+            .certificate-image {
+                width: 10rem; /* w-40 on medium screens */
+            }
+        }
+
+        /* Styles for the Image Modal (Popup) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top of other content */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed (though content should fit) */
+            background-color: rgba(0,0,0,0.85); /* Black background with opacity */
+            justify-content: center; /* Center horizontally (using flex) */
+            align-items: center; /* Center vertically (using flex) */
+            padding: 20px; /* Add some padding around the image */
+        }
+        .modal-content {
+            margin: auto; /* Center block element (fallback if flex not used) */
+            display: block;
+            max-width: 90%; /* Limit maximum width */
+            max-height: 85vh; /* Limit maximum height to viewport height */
+            object-fit: contain; /* Ensure the entire image fits without distortion */
+        }
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #f1f1f1; /* White close button */
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            line-height: 1; /* Adjust line height for better positioning */
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb; /* Lighter gray on hover/focus */
+            text-decoration: none;
+        }
+         /* Custom style for progress bar */
+        .progress-bar-inner {
+            transition: width 0.6s ease; /* Add transition for visual effect */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-semibold text-gray-700">Chaichna Luangsanam</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-blue-500 nav-link" data-section="home">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-500 nav-link" data-section="about">Profile</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-500 nav-link" data-section="skills">Skill</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-500 nav-link" data-section="experience">Experience & Projects</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-500 nav-link" data-section="education">Education & Courses</a>
+                <a href="https://medium.com/@pxhology" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-500 nav-link" data-section="articles">My Articles / Insights</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-500 nav-link" data-section="contact">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2">
+            <a href="#home" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="home">Home</a>
+            <a href="#about" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="about">Profile</a>
+            <a href="#skills" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="skills">Skill</a>
+            <a href="#experience" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="experience">Experience & Projects</a>
+            <a href="#education" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="education">Education & Courses</a>
+             <a href="https://medium.com/@pxhology" target="_blank" rel="noopener noreferrer" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="articles">My Articles / Insights</a>
+             <a href="#contact" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 nav-link" data-section="contact">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="home" class="text-center py-20 min-h-[60vh] flex flex-col justify-center items-center scroll-mt-16">
+             <img src="MY Profile.jpg" alt="รูปโปรไฟล์ของ ชัยชนะ หลวงสนาม" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 shadow-lg object-cover" onerror="this.onerror=null; this.src='https://placehold.co/150x150/e2e8f0/333?text=รูปโปรไฟล์'">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Chaichana Luangsanam</h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8">Psycholog Industrial & Organizational</p>
+            <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300">Contact</a>
+        </section>
+
+        <section id="about" class="py-16 bg-white rounded-lg shadow-md mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-8">Profile</h2>
+                <p class="text-gray-600 text-center max-w-3xl mx-auto leading-relaxed">
+                    I’m Chaichana Luangsanam, a third‑year Industrial & Organizational Psychology student at Suan Dusit University. I specialize in counseling and thrive on diving deep into subjects I’m passionate about—then applying that knowledge in real‑world situations. My ultimate goal is to become a psychologist, and I find true fulfillment in listening attentively and creating a safe, supportive space for others. Although I’m still building formal projects, I proactively seek hands‑on experiences to sharpen my skills. I’m also passionate about AI, economics, and data analysis, which help me gain fresh perspectives and stay curious. My vision is to develop accessible mental‑health spaces that empower people to improve their own lives in our fast‑changing world.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">Skills</h2>
+
+                <div class="mb-12"> <h3 class="text-2xl font-semibold text-gray-700 mb-6 text-left">Technical Skills</h3>
+                    <div class="space-y-5">
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/heart-handshake.svg" alt="Counseling Icon" class="w-5 h-5 mr-2 text-rose-500" onerror="this.style.display='none'">
+                                <span class="text-lg font-medium text-gray-700">Psychological Counseling</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mr-2" title="Psychological Counseling: 75%" aria-label="Psychological Counseling Proficiency: 75%">
+                                    <div class="bg-rose-500 h-2.5 rounded-full progress-bar-inner" style="width: 75%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-600 whitespace-nowrap">75%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/brain-circuit.svg" alt="AI Prompting Icon" class="w-5 h-5 mr-2 text-cyan-500" onerror="this.style.display='none'">
+                                <span class="text-lg font-medium text-gray-700">AI Prompt Engineering</span>
+                            </div>
+                             <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mr-2" title="AI Prompt Engineering: 92%" aria-label="AI Prompt Engineering Proficiency: 92%">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full progress-bar-inner" style="width: 92%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-600 whitespace-nowrap">92%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/bar-chart-2.svg" alt="Data Analysis Icon" class="w-5 h-5 mr-2 text-green-500" onerror="this.style.display='none'">
+                                <span class="text-lg font-medium text-gray-700">Data Analysis</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mr-2" title="Data Analysis: 70%" aria-label="Data Analysis Proficiency: 70%">
+                                    <div class="bg-green-500 h-2.5 rounded-full progress-bar-inner" style="width: 70%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-600 whitespace-nowrap">70%</span>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-6 text-left">Soft Skills</h3>
+                    <div class="space-y-5">
+                         <div>
+                            <div class="flex items-center mb-1">
+                                <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/edit-3.svg" alt="Writing Icon" class="w-5 h-5 mr-2 text-yellow-600" onerror="this.style.display='none'">
+                                <span class="text-lg font-medium text-gray-700">Writing</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mr-2" title="การเขียน (Writing): 80%" aria-label="Writing Proficiency: 80%">
+                                    <div class="bg-yellow-600 h-2.5 rounded-full progress-bar-inner" style="width: 80%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-600 whitespace-nowrap">80%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/briefcase.svg" alt="Management Icon" class="w-5 h-5 mr-2 text-indigo-600" onerror="this.style.display='none'">
+                                <span class="text-lg font-medium text-gray-700">Team Management</span>
+                            </div>
+                             <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mr-2" title="Team Management: 80%" aria-label="Team Management Proficiency: 80%">
+                                    <div class="bg-indigo-600 h-2.5 rounded-full progress-bar-inner" style="width: 80%"></div>
+                                </div>
+                                <span class="text-sm font-medium text-gray-600 whitespace-nowrap">80%</span>
+                            </div>
+                        </div>
+                         </div>
+                </div>
+            </div>
+        </section>
+        <section id="experience" class="py-16 bg-white rounded-lg shadow-md mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-center text-gray-800 mb-12">Experience & Projects</h2>
+                <div class="space-y-8">
+                    <div class="md:flex items-start gap-6 p-6 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                         <img src="น้องชิชิบา.jpg" alt="ภาพตัวอย่างผลงาน 1" class="w-full md:w-48 h-auto rounded-md mb-4 md:mb-0 object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/200x150/e0f2fe/333?text=Project+1'">
+                        <div>
+                            <h3 class="text-xl font-medium text-gray-700 mb-2">[ชื่อโปรเจกต์ หรือ ตำแหน่งงาน]</h3>
+                            <p class="text-sm text-gray-500 mb-3">[ช่วงเวลา เช่น ม.ค. 2023 - ปัจจุบัน หรือ ชื่อบริษัท]</p>
+                            <p class="text-gray-600 mb-3">
+                                [อธิบายรายละเอียดเกี่ยวกับโปรเจกต์ หรือหน้าที่ความรับผิดชอบในตำแหน่งงานนั้นๆ
+                                เน้นผลลัพธ์หรือสิ่งที่ได้เรียนรู้ เทคโนโลยีที่ใช้]
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">HTML</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">CSS</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
+                            </div>
+                             <a href="https://youtu.be/bXesrxp4u_g?si=EoEayA7IarXNdV-V" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline text-sm font-medium inline-flex items-center">
+                                 ดูรายละเอียด
+                                 <svg class="w-3 h-3 ml-1 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/></svg>
+                             </a>
+                        </div>
+                    </div>
+
+                    <div class="md:flex items-start gap-6 p-6 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                         <img src="https://placehold.co/200x150/dcfce7/333?text=Project+2" alt="ภาพตัวอย่างผลงาน 2" class="w-full md:w-48 h-auto rounded-md mb-4 md:mb-0 object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/200x150/dcfce7/333?text=Project+2'">
+                        <div>
+                            <h3 class="text-xl font-medium text-gray-700 mb-2">[ชื่อโปรเจกต์ หรือ ตำแหน่งงาน]</h3>
+                            <p class="text-sm text-gray-500 mb-3">[ช่วงเวลา หรือ ชื่อบริษัท]</p>
+                            <p class="text-gray-600 mb-3">
+                                [อธิบายรายละเอียด...]
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">[Tech 1]</span>
+                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">[Tech 2]</span>
+                            </div>
+                             <a href="https://youtu.be/bXesrxp4u_g?si=EoEayA7IarXNdV-V" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline text-sm font-medium inline-flex items-center">
+                                 ดูรายละเอียด
+                                 <svg class="w-3 h-3 ml-1 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/></svg>
+                             </a>
+                        </div>
+                    </div>
+
+                     <div class="md:flex items-start gap-6 p-6 border border-gray-200 rounded-lg hover:bg-gray-50 transition duration-300">
+                         <div class="w-full md:w-48 h-auto mb-4 md:mb-0 flex-shrink-0 project-icon-container">
+                            <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/instagram.svg" alt="ไอคอน Instagram" class="" onerror="this.style.display='none'">
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-medium text-gray-700 mb-2">Page Instagram </h3>
+                            <p class="text-gray-600 mb-3">
+                                I share bite‑sized posts on psychology insights, mental‑health tips, and personal‑development ideas to inspire and support my followers
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-pink-100 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Social Media</span>
+                                <span class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Content Creation</span>
+                            </div>
+                             <a href="https://www.instagram.com/psy._talk/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline text-sm font-medium inline-flex items-center">
+                                 Visit my Instagram
+                                 <svg class="w-3 h-3 ml-1 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/></svg>
+                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-16 mb-12 scroll-mt-16">
+            <div class="container mx-auto px-6">
+                 <h3 class="text-2xl font-semibold text-center text-gray-700 mb-8">Education</h3>
+                <div class="max-w-4xl mx-auto space-y-8 mb-16">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300 flex items-start gap-6">
+                         <img src="SDU2016.png" alt="รูปภาพวุฒิการศึกษา" class="certificate-image clickable-certificate" onerror="this.onerror=null; this.src='https://placehold.co/160x110/e2e8f0/333?text=Error'">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700">Bachelor of Arts in Psycholog I/O</h3>
+                            <p class="text-gray-500 text-sm mb-1">Suan Dusit University | Ongoing</p>
+                            <p class="text-gray-600 text-sm">
+                                <strong>Focus</strong> Counseling Psychology, Research Methods, Industrial & Organizational Psychology<br>
+                                <strong>Activities</strong> Head of Student Activity Committee, Mental Health Campaign Organizer
+                            </p>
+                        </div>
+                     </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300 flex items-start gap-6">
+                         <img src="https://placehold.co/160x110/e0f2fe/333?text=Degree+Cert+2" alt="รูปภาพวุฒิการศึกษา 2" class="certificate-image clickable-certificate" onerror="this.onerror=null; this.src='https://placehold.co/160x110/e2e8f0/333?text=Error'">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700">[ชื่อวุฒิการศึกษา 2]</h3>
+                            <p class="text-gray-500 text-sm mb-1">[ชื่อสถาบัน 2] - [ปีที่จบ 2]</p>
+                            <p class="text-gray-600 text-sm">[รายละเอียดเพิ่มเติมเกี่ยวกับสาขาที่เรียน 2 (ถ้ามี)]</p>
+                        </div>
+                     </div>
+                </div>
+
+                 <h3 class="text-2xl font-semibold text-center text-gray-700 mb-8">Courses</h3>
+                 <div class="max-w-4xl mx-auto space-y-8">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300 flex items-start gap-6">
+                         <img src="C chaichana.luangsanam-S.E.-Asia-Fundamentals-of-EFT-March-2025-2025-March-FEFT-ICEEFT-Courses_page-0001.jpg" alt="รูปภาพเกียรติบัตร EFT Therapy" class="certificate-image clickable-certificate" onerror="this.onerror=null; this.src='https://placehold.co/160x110/e2e8f0/333?text=Error'">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700 mb-1">Fundamentals of Emotionally Focused Therapy (EFT)</h3>
+                            <p class="text-gray-500 text-sm mb-2">By ICEEFT | March 2025 | 6.25 hrs</p>
+                            <p class="text-gray-600 text-sm">
+                                I completed a foundational training in EFT, a therapeutic model based on Attachment Theory developed by Dr. Sue Johnson.<br><br>
+                                This course taught me how emotions shape our relationships, and how to support secure connections through empathy and presence.<br><br>
+                                <strong>Key insight</strong><br>
+                                Healthy relationships thrive when we are Accessible, Responsive, and Emotionally Engaged (A.R.E.)<br><br>
+                                Though I’m still learning, this training inspired me to deepen my understanding of human connection—and to walk alongside others as a compassionate listener, not just a helper.
+                            </p>
+                        </div>
+                     </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300 flex items-start gap-6">
+                         <img src="C สัมมนาบำบัดพี่แนท.png" alt="รูปภาพเกียรติบัตร สัมมนา Psychotherapy and Counseling" class="certificate-image clickable-certificate" onerror="this.onerror=null; this.src='https://placehold.co/160x110/e2e8f0/333?text=Error'">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700 mb-1">What Is the Difference Between Psychotherapy and Counseling?</h3>
+                            <p class="text-gray-500 text-sm mb-2">October 2023</p>
+                            <p class="text-gray-600 text-sm">Participated in a professional seminar exploring the distinction between psychotherapy and counseling, with a focus on real-world application through a self-esteem case study. The session was led by academic experts including Dr. Titapa Chinkijkarn and included interactive discussion and psychological case analysis.</p>
+                        </div>
+                     </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-300 flex items-start gap-6">
+                         <img src="Sati app C ENG_page-0001.jpg" alt="รูปภาพเกียรติบัตร 3" class="certificate-image clickable-certificate" onerror="this.onerror=null; this.src='https://placehold.co/160x110/e2e8f0/333?text=Error'">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-700 mb-1">Psychological First Aid</h3>
+                            <p class="text-gray-600 text-sm">
+                                This course didn’t just teach me the principles of psychological first aid—it deepened my understanding of what it means to truly “listen with heart.” I learned that deep listening isn’t about preparing a reply—it’s about really being present and understanding the other person.<br><br>
+                                One of the parts that impressed me most was about self-care and self-compassion. As helpers, we often focus so much on supporting others that we forget to ask ourselves: “Am I doing okay?” This topic reminded me how important it is to check in with myself, too.<br><br>
+                                I also appreciated learning about simple yet powerful tools like “Grounding” and the “Circle of Control.” They’re not only useful for supporting others, but also for helping me navigate my own daily life.
+                            </p>
+                        </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg shadow-md scroll-mt-16">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl font-semibold text-gray-800 mb-6">Contact</h2>
+                <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+                    Interested in working together or have any questions?
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="flex items-center text-gray-700">
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/mail.svg" alt="Email Icon" class="w-5 h-5 mr-2 text-blue-500" onerror="this.style.display='none'">
+                        <a href="mailto:pxhology@gmail.com" class="hover:text-blue-600">pxhology@gmail.com</a>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/phone.svg" alt="Phone Icon" class="w-5 h-5 mr-2 text-green-500" onerror="this.style.display='none'">
+                        <span>0623908170</span>
+                    </div>
+                    <div class="flex items-center text-gray-700">
+                         <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/linkedin.svg" alt="LinkedIn Icon" class="w-5 h-5 mr-2 text-indigo-500" onerror="this.style.display='none'">
+                         <a href="https://linkedin.com/in/chaichana-luangsanam-867961341" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600">LinkedIn</a>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="imageModal" class="modal">
+        <span id="closeModal" class="modal-close">×</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <footer class="bg-gray-800 text-gray-300 py-6 mt-12">
+        <div class="container mx-auto px-6 text-center text-sm">
+            © <span id="current-year"></span> Chaichana Luangsanam. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Event listener for the mobile menu button
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden'); // Toggles the 'hidden' class to show/hide
+        });
+
+        // Close menu when a link is clicked (for Mobile)
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Only hide if it's an internal link or mobile menu is open
+                if (link.getAttribute('href').startsWith('#') || !mobileMenu.classList.contains('hidden')) {
+                   mobileMenu.classList.add('hidden'); // Hide menu after clicking a link
+                }
+            });
+        });
+
+        // --- Update current year in Footer ---
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- Active Navigation Link on Scroll ---
+        const sections = document.querySelectorAll('section[id]'); // Get all sections with an ID
+        const navLinks = document.querySelectorAll('.nav-link'); // Get all navigation links
+
+        // Intersection Observer options
+        const observerOptions = {
+            rootMargin: "-50% 0px -50% 0px", // Observe when section is in the middle 50% of the viewport
+            threshold: 0 // Trigger as soon as any part enters/leaves the rootMargin area
+        };
+
+        // Callback function for Intersection Observer
+        const observerCallback = (entries) => {
+            let intersectingId = null;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { // Find the currently intersecting section
+                    intersectingId = entry.target.getAttribute('id');
+                }
+            });
+
+            // Update nav links based on the intersecting section
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                // Add active class only if the link's data-section matches the intersecting section ID
+                // And ensure it's an internal link
+                if (link.getAttribute('data-section') === intersectingId && link.getAttribute('href').startsWith('#')) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        };
+
+
+        // Create and start the Intersection Observer
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => {
+            // Only observe sections that have a corresponding nav link (internal sections)
+            const sectionId = section.getAttribute('id');
+            const correspondingNavLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+            if (correspondingNavLink && correspondingNavLink.getAttribute('href').startsWith('#')) {
+                 observer.observe(section); // Observe each internal section
+            }
+        });
+
+        // --- Image Modal Functionality ---
+        // Get modal elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeModal = document.getElementById("closeModal");
+
+        // Get all clickable certificate images
+        const certificateImages = document.querySelectorAll(".clickable-certificate"); // Use the specific class
+
+        // Add click listener to each certificate image
+        certificateImages.forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "flex"; // Show modal (use flex for centering)
+                modalImg.src = this.src; // Set the modal image source
+                modalImg.alt = this.alt; // Copy alt text to modal image
+            }
+        });
+
+        // Add click listener to close button
+        closeModal.onclick = function() {
+            modal.style.display = "none"; // Hide modal
+        }
+
+        // Add click listener to modal background to close it
+        modal.onclick = function(event) {
+            // Check if the click is directly on the modal background (not the image or close button)
+            if (event.target === modal) {
+                 modal.style.display = "none"; // Hide modal
+            }
+        }
+
+    </script>
+
+</body>
+</html>
